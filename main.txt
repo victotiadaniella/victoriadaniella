@@ -1,0 +1,26 @@
+ FlappyBird() {
+      this.gameState = FlappyBird.GameState.MENU;
+      this.birdX = this.boardWidth / 8;
+      this.birdY = this.boardHeight / 2;
+      this.birdWidth = 34;
+      this.birdHeight = 24;
+      this.velocityX = -4;
+      this.velocityY = 0;
+      this.gravity = 1;
+      this.pipeHeight = 512;
+      this.level = 1;
+      this.score = 0.0;
+      this.pipes = new ArrayList();
+      this.random = new Random();
+      this.setPreferredSize(new Dimension(this.boardWidth, this.boardHeight));
+      this.setFocusable(true);
+      this.addKeyListener(this);
+      this.setLayout((LayoutManager)null);
+      this.backgroundImg = (new ImageIcon(this.getClass().getResource("./flappybirdbg.png"))).getImage();
+      this.birdImg = (new ImageIcon(this.getClass().getResource("./flappybird.png"))).getImage();
+      this.topPipeImg = (new ImageIcon(this.getClass().getResource("./toppipe.png"))).getImage();
+      this.bottomPipeImg = (new ImageIcon(this.getClass().getResource("./bottompipe.png"))).getImage();
+      this.bird = new FlappyBird$Bird(this, this.birdImg);
+      this.gameLoop = new Timer(16, this);
+      this.pipeTimer = new Timer(1500, (var1x) -> {
+         this.placePipes();
